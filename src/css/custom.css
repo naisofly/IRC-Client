@@ -88,3 +88,10 @@ body {
     font-weight: 500;
     padding: 10px 0;
 }
+
+#my_image{
+    position: absolute;
+    top: 50%;
+    margin: 40px auto 0;
+    margin-left: 150px;
+}
