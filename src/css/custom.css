@@ -90,8 +90,11 @@ body {
 }
 
 #my_image{
-    position: absolute;
-    top: 50%;
+
+    width: 100%;
+    display:block;
+    height: auto;
     margin: 40px auto 0;
-    margin-left: 150px;
+    margin-left: 24%;
+    margin-bottom: 40px;
 }
