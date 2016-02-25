@@ -1,1 +1,1 @@
-# IRC-Client
+# IRIS-Client
