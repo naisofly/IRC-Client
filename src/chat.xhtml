@@ -30,7 +30,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js">type = "text/javascript"</script>
     <script src="jquery-1.12.0.min.js">type = "text/javascript"</script>
 
-    <script type="text/javascript" src="test.js">type = "text/javascript"</script>
+    <script type="text/javascript" src="js/test.js">type = "text/javascript"</script>
 
     <script src="js/bootstrap.min.js"> type = "text/javascript"</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">type = "text/javascript"</script>
@@ -39,12 +39,12 @@
 
     <!-- Chat / User List JS-->
     <script type="text/javascript">
-        function myFunction() {
+        function showChat() {
             document.getElementById("replacement-target").style.display = "block";
             document.getElementById("panel-footer").style.display = "block";
             document.getElementById("contentContainer").style.display = "none";
         }
-        function Function() {
+        function showPeople() {
             document.getElementById("replacement-target").style.display = "none";
             document.getElementById("panel-footer").style.display = "none";
             document.getElementById("contentContainer").style.display = "block";
@@ -125,8 +125,8 @@
         <div class="col-lg-8">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <a href="#" class="chat" onclick="myFunction()" style=" color:whitesmoke">Chat</a>
-                    <a href="#" class="People" onclick="Function()" style="color:whitesmoke">People</a>
+                    <a href="#" class="chat" onclick="showChat()" style=" color:whitesmoke">Chat</a>
+                    <a href="#" class="People" onclick="showPeople()" style="color:whitesmoke">People</a>
 
                     <div class="btn-group pull-right">
                         <button type="button" class="btn btn-default btn-xs dropdown-toggle">
