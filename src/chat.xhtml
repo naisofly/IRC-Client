@@ -13,12 +13,12 @@
     <title>IRIS | Chat Client</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="css/custom.css" rel="stylesheet" type="text/css"/>
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]>
-    <script src="../../assets/js/ie8-responsive-file-warning.js">type="text/javascript"</script><![endif]-->
+    <script src="../../assets/js/ie8-responsive-file-warning.js">type = "text/javascript"</script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js" type="text/javascript"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -26,14 +26,30 @@
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js">type="text/javascript"</script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js">type="text/javascript"</script>
-    <script src="jquery-1.12.0.min.js">type="text/javascript"</script>
-    <script type="text/javascript" src="test.js">type="text/javascript"</script>
-    <script src="js/bootstrap.min.js"> type="text/javascript"</script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">type="text/javascript"</script>
-    <script src="js/bootstrap.min.js"> type="text/javascript"</script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js">type = "text/javascript"</script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js">type = "text/javascript"</script>
+    <script src="jquery-1.12.0.min.js">type = "text/javascript"</script>
+
+    <script type="text/javascript" src="test.js">type = "text/javascript"</script>
+
+    <script src="js/bootstrap.min.js"> type = "text/javascript"</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">type = "text/javascript"</script>
+    <script src="js/bootstrap.min.js"> type = "text/javascript"</script>
     <![endif]-->
+
+    <!-- Chat / User List JS-->
+    <script type="text/javascript">
+        function myFunction() {
+            document.getElementById("replacement-target").style.display = "block";
+            document.getElementById("panel-footer").style.display = "block";
+            document.getElementById("contentContainer").style.display = "none";
+        }
+        function Function() {
+            document.getElementById("replacement-target").style.display = "none";
+            document.getElementById("panel-footer").style.display = "none";
+            document.getElementById("contentContainer").style.display = "block";
+        }
+    </script>
 
 </head>
 
@@ -48,10 +64,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><img  alt="Logo" src="Images/syncivon.png" /></a>
+            <a class="navbar-brand" href="#"><img alt="Logo" src="Images/syncivon.png"/></a>
         </div>
         <div class="navbar-collapse collapse navbar-inverse-collapse">
-            <a class="navbar-form navbar-right" href="logIn.html" >
+            <a class="navbar-form navbar-right" href="logIn.html">
                 <button type="submit" class="btn btn-success">Sign out</button>
             </a>
         </div>
@@ -74,7 +90,7 @@
             <div class="list-group">
                 <!--<a href="#" class="list-group-item active">Search 🔎</a>-->
                 <form class="list-group-item active" action="">
-                    <input type="text" class=" list-group-item form-control " />
+                    <input type="text" class=" list-group-item form-control "/>
                 </form>
                 <div class="list-group-item">
                     Channel #1
@@ -109,8 +125,8 @@
         <div class="col-lg-8">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <span style="color:whitesmoke">Chat</span>
-                    <span style="color:whitesmoke">People</span>
+                    <a href="#" class="chat" onclick="myFunction()" style=" color:whitesmoke">Chat</a>
+                    <a href="#" class="People" onclick="Function()" style="color:whitesmoke">People</a>
 
                     <div class="btn-group pull-right">
                         <button type="button" class="btn btn-default btn-xs dropdown-toggle">
@@ -132,7 +148,24 @@
                     </div>
                 </div>
 
-                <div class="panel-body">
+                <div id="contentContainer" style="display: none;height: 400px;">
+                    <div class="topicPeople">
+                        <ul>
+                            <li><img class="profileImage" src="Images/profilepic.png" alt="Profile Picture" />Ali</li>
+                            <li><img class="profileImage" src="Images/profilepic.png" alt="Profile Picture" />Anton</li>
+                            <li><img class="profileImage" src="Images/profilepic.png" alt="Profile Picture" />Saeed</li>
+                            <li><img class="profileImage" src="Images/profilepic.png" alt="Profile Picture" />Tarun</li>
+                            <li><img class="profileImage" src="Images/profilepic.png" alt="Profile Picture" />Naiyarah</li>
+                            <li><img class="profileImage" src="Images/profilepic.png" alt="Profile Picture" />Mic Brady</li>
+                            <li><img class="profileImage" src="Images/profilepic.png" alt="Profile Picture" />Vardy</li>
+                            <li><img class="profileImage" src="Images/profilepic.png" alt="Profile Picture" />Nick</li>
+                            <li><img class="profileImage" src="Images/profilepic.png" alt="Profile Picture" />Lampard</li>
+                            <li><img class="profileImage" src="Images/profilepic.png" alt="Profile Picture" />John</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel-body" id="replacement-target">
                     <ul class="chat">
                         <li class="left clearfix"><span class="chat-img pull-left">
                             <img src="http://placehold.it/50/55C1E7/fff&amp;text=V" alt="User Avatar"
@@ -242,7 +275,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="panel-footer">
+                <div class="panel-footer" id="panel-footer">
                     <div class="input-group">
                         <input id="btn-input" type="text" class="form-control input-sm"/>
                         <span class="input-group-btn">
@@ -262,7 +295,8 @@
         <p>&#169; 2016 IRIS Chat, Inc. &#183; <a href="#">Privacy</a> &#183; <a href="#">Terms</a></p>
         <button onclick="window.location.href =
                   'http://validator.w3.org/check?uri=' +
-                  window.location.href">Valid HTML?</button>
+                  window.location.href">Valid HTML?
+        </button>
     </div>
 
     <!-- embed kml map-->
