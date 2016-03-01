@@ -1,8 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -13,12 +10,12 @@
     <title>IRIS | Chat Client</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="css/custom.css" rel="stylesheet" type="text/css"/>
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]>
-    <script src="../../assets/js/ie8-responsive-file-warning.js">type="text/javascript"</script><![endif]-->
+    <script src="../../assets/js/ie8-responsive-file-warning.js">type = "text/javascript"</script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js" type="text/javascript"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -26,13 +23,13 @@
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js">type="text/javascript"</script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js">type="text/javascript"</script>
-    <script src="jquery-1.12.0.min.js">type="text/javascript"</script>
-    <script type="text/javascript" src="test.js">type="text/javascript"</script>
-    <script src="js/bootstrap.min.js"> type="text/javascript"</script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">type="text/javascript"</script>
-    <script src="js/bootstrap.min.js"> type="text/javascript"</script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js">type = "text/javascript"</script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js">type = "text/javascript"</script>
+    <script src="jquery-1.12.0.min.js">type = "text/javascript"</script>
+    <script type="text/javascript" src="test.js">type = "text/javascript"</script>
+    <script src="js/bootstrap.min.js"> type = "text/javascript"</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">type = "text/javascript"</script>
+    <script src="js/bootstrap.min.js"> type = "text/javascript"</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <![endif]-->
@@ -41,7 +38,7 @@
 
 <body>
 
-<div class="navbar navbar-inverse navbar-fixed-top" >
+<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle">
@@ -50,10 +47,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><img alt="Logo" src="Images/syncivon.png" /></a>
+            <a class="navbar-brand" href="index.html"><img alt="Logo" src="Images/syncivon.png"/></a>
         </div>
         <div class="navbar-collapse collapse navbar-inverse-collapse">
-            <a class="navbar-form navbar-right" href="logIn.xhtml" >
+            <a class="navbar-form navbar-right" href="logIn.xhtml">
                 <button type="submit" class="btn btn-success">Log In</button>
             </a>
         </div>
@@ -65,7 +62,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-header">
-                    <form class="form-horizontal" action="">
+                    <form class="form-horizontal" action="#">
                         <fieldset>
                             <legend>Sign up</legend>
                             <div class="form-group">
@@ -88,7 +85,6 @@
                             </div>
 
 
-
                             <div class="form-group">
                                 <div class="col-lg-10 col-lg-offset-2">
                                     <button type="reset" class="btn btn-default">Cancel</button>
@@ -103,14 +99,17 @@
     </div>
 
 
-
     <!-- FOOTER -->
     <div class="footer">
         <p class="pull-right"><a href="#">Back to top</a></p>
         <p>&#169; 2016 IRIS Chat, Inc. &#183; <a href="#">Privacy</a> &#183; <a href="#">Terms</a></p>
-        <button onclick="window.location.href =
+<!--        <button onclick="window.location.href =
                   'http://validator.w3.org/check?uri=' +
-                  window.location.href">Valid HTML?</button>
+                  window.location.href">Valid HTML?
+        </button>-->
+        <a href="http://validator.w3.org/check?uri=referer">
+            <img style="-webkit-user-select: none" alt="validation button" src="https://www.w3.org/Icons/valid-html401"/>
+        </a>
     </div>
 
     <!-- embed kml map-->
