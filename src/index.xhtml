@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"/>-->
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
@@ -27,7 +27,9 @@
             <a class="navbar-brand" href="index.html"><img alt="Logo" src="Images/syncivon.png"/></a>
         </div>
         <div class="navbar-collapse collapse navbar-inverse-collapse">
-
+            <a class="navbar-form navbar-right btn btn-success" href="logIn.xhtml">
+                <button type="submit" class="btn btn-success">Log In</button>
+            </a>
         </div>
     </div>
 </div>
@@ -44,7 +46,7 @@
     </div>
 
     <div class="jumbotron">
-        <h1>Synchronous Chat Service</h1>
+        <h1>IRIS Chat - Synchronous Chat Service</h1>
         <p>This site is based on the project Synchronous Chat Service. This web chat client will connect to an
             existing IRC server which will be implemented in the second part of the coursework. This web client will
             allow users to chat in various channels with other users.</p>
@@ -52,16 +54,26 @@
     </div>
 
     <div class="well">
+        The resources used during the completion of this project are: <a href="http://bootswatch.com/united/">bootswatch.com/united/ </a>
+        &amp;
+        <a href="http://www.bootply.com/6mdOs5FvKU#">bootply.com/6mdOs5FvKU#</a>
+        All forms use HTML5 validated input. <br/>
         <a target="_blank" href="logIn.xhtml" class="btn btn-link">LogIn.xhtml</a>: This is the page where the user is
-        directed to when
-        the site is visited. <br/>
+        directed to when they want to authenticate themselves &amp; login to use the service. They also have the option
+        of joining or creating a new channel on the IRC server.<br/>
         <a target="_blank" href="signup.xhtml" class="btn btn-link">Signup.xhtml</a>: This page is visited when the user
-        wants to sign up. <br/>
+        wants to sign up for an account to use the chat service with their chosen nickname, email and password.<br/>
         <a target="_blank" href="dashboard.xhtml" class="btn btn-link">Dashboard.xhtml</a>: The user is directed to
-        this page after signing in.<br/>
+        this page after signing in, where they can view &amp; browse a list of channels to join.<br/>
         <a target="_blank" href="chat.xhtml" class="btn btn-link">Chat.xhtml</a>: This chat page is the result of
-        clicking on
-        a channel, The user can also click on people to see who all are online. <br/>
+        joining on a channel where the user can chat with other participants in realtime. The user can also click on the
+        people tab to see a list of all online users. <br/>
+        Project contributions and status can be tracked at the following github repo:
+        <a href="https://github.com/naisofly/IRC-Client/graphs/contributors">
+            https://github.com/naisofly/IRC-Client/graphs/contributors
+        </a>
+        All project members worked equally
+        on the above pages. <br/>
 
     </div>
 
@@ -114,12 +126,17 @@
     <div class="footer">
         <p class="pull-right"><a href="#">Back to top</a></p>
         <p>&#169; 2016 IRIS Chat, Inc. &#183; <a href="#">Privacy</a> &#183; <a href="#">Terms</a></p>
-<!--        <button onclick="window.location.href =
-                  'http://validator.w3.org/check?uri=' +
-                  window.location.href">Valid HTML?
-        </button>-->
+        <!--        <button onclick="window.location.href =
+                          'http://validator.w3.org/check?uri=' +
+                          window.location.href">Valid HTML?
+                </button>-->
         <a href="http://validator.w3.org/check?uri=referer">
-            <img style="-webkit-user-select: none" alt="validation button" src="https://www.w3.org/Icons/valid-html401"/>
+            <img style="-webkit-user-select: none" alt="validation button"
+                 src="https://www.w3.org/Icons/valid-html401"/>
+        </a>
+
+        <a href="http://jigsaw.w3.org/css-validator/validator?uri=referer">
+            <img style="-webkit-user-select: none" src="https://www.w3.org/Icons/valid-css2"/>
         </a>
     </div>
 
