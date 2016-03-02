@@ -99,39 +99,3 @@ body {
     margin-bottom: 40px;
 }
 
-.circle-image1{
-    width:200px;
-    height:200px;
-    border-radius:50%;
-    background-image:url("../Images/tarun.jpg");
-    display:block;
-    background-position-y:25%;
-
-}
-
-.circle-image2{
-    width:200px;
-    height:200px;
-    border-radius:50%;
-    background-image:url("../Images/Nai.jpg");
-    display:block;
-    background-position-y:25%
-}
-
-.circle-image3{
-    width:200px;
-    height:200px;
-    border-radius:50%;
-    background-image:url("../Images/abu_saed.jpg");
-    display:block;
-    background-position-y:25%
-}
-
-.circle-image4{
-    width:200px;
-    height:200px;
-    border-radius:50%;
-    background-image:url("../Images/Ali-Khan.png");
-    display:block;
-    background-position-y:25%
-}
