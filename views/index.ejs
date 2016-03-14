@@ -2,15 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"/>-->
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <link rel="icon" href="/images/favicon.ico"/>
-
-    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/stylesheets/custom.css" rel="stylesheet"/>
-
-    <title>IRIS | Welcome to IRIS Chat</title>
+    <% include partials/head.ejs %>
 </head>
 
 <body>
@@ -119,23 +111,7 @@
 
 
     <div class="footer">
-        <p class="pull-right">
-            <a href="http://validator.w3.org/check?uri=referer">
-                <img style="-webkit-user-select: none" alt="validation button"
-                     src="https://www.w3.org/Icons/valid-html401"/>
-            </a>
-            <a href="http://jigsaw.w3.org/css-validator/check/referer">
-                <img style="border:0;width:88px;height:31px"
-                     src="http://jigsaw.w3.org/css-validator/images/vcss"
-                     alt="Valid CSS!"/>
-            </a>
-        </p>
-        <p>&#169; 2016 IRIS Chat, Inc. &#183; <a href="#">Privacy</a> &#183; <a href="#">Terms</a></p>
-        <!--        <button onclick="window.location.href =
-                          'http://validator.w3.org/check?uri=' +
-                          window.location.href">Valid HTML?
-                </button>-->
-
+        <% include partials/footer.ejs %>
     </div>
 
 
