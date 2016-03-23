@@ -36,6 +36,9 @@ app.configure(function () {
     app.use(passport.session()); // persistent login sessions
     app.use(flash()); // use connect-flash for flash messages stored in session
 
+/* SETUP Channel Data */
+    app.locals.appdata = require('../channeldata.json');
+
 /*// catch 404 and forward to error handler
     app.use(function (req, res, next) {
         var err = new Error('Not Found');
