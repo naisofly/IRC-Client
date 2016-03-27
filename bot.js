@@ -30,8 +30,8 @@ stdin.addListener("data", function (d) {
         bot.part("#othertest");
     if(d.toString().indexOf("/whois") >=0)
         bot.whois("anon2405");
-    /*else
-        bot.say("#othertest", d.toString().trim());*/
+    else
+        bot.say("#othertest", d.toString().trim());
 
 });
 

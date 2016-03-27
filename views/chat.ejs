@@ -76,40 +76,30 @@
         </div>
     </div>
 
+    <!--<p>   </br> </p>-->
+
+
     <div class="row">
         <div class="col-lg-4">
-            <div class="list-group">
+            <div class="list-group" style = "height: 400px; overflow-y:scroll">
 
                 <form class="list-group-item active" action="#">
+
                     <input type="text" class=" list-group-item form-control "/>
+
                 </form>
+                <% channellist.forEach(function(item) {   %>
                 <div class="list-group-item">
-                    <a href="chat" class="btn btn-link">Channel #1</a>
+                    <!--<a href="chat" class="btn btn-link"><span class="badge"><%= item.users%></span><%= item.name %></a>-->
+                    <span class="badge"><%= item.users%></span><%= item.name %>
                 </div>
-                <div class="list-group-item">
-                    Channel #2
-                </div>
-                <div class="list-group-item">
+
+                <% }); %>
+                <!--<div class="list-group-item">
                     <span class="badge">14</span>Channel #3
-                </div>
-                <div class="list-group-item">
-                    <span class="badge">7</span>Channel #4
-                </div>
-                <div class="list-group-item">
-                    <span class="badge">11</span>Channel #5
-                </div>
-                <div class="list-group-item">
-                    <span class="badge">3</span>Channel #6
-                </div>
-                <div class="list-group-item">
-                    Channel #7
-                </div>
-                <div class="list-group-item">
-                    <span class="badge">6</span>Channel #8
-                </div>
-                <div class="list-group-item">
-                    Channel #9
-                </div>
+
+                </div>-->
+
                 <a class="list-group-item active"><span class="badge">14</span>Help</a>
             </div>
         </div>

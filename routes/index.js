@@ -1,4 +1,4 @@
-
+var channeldata = require('../lib/channeldata.json');
 module.exports = function(app, passport) {
     app.get('/', function(req, res) {
         res.render('index', { title: 'Express' });
@@ -36,9 +36,18 @@ module.exports = function(app, passport) {
 
 
     app.get('/chat', isLoggedIn, function(req, res) {
+
+        var channels = [];
+        var users = [];
+        channels = channeldata;
+        /*channeldata.forEach(function(item) {
+            channels = channels.concat(item);
+
+        });*/
         res.render('chat.ejs', {
-            user : req.user // get the user out of session and pass to template
+            channellist: channels // get the user out of session and pass to template
         });
+
     });
 
     app.get('/dashboard', isLoggedIn, function(req, res) {
