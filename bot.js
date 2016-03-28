@@ -50,32 +50,6 @@ bot.addListener('message', function (from, message) {
 bot.addListener('message', function (from, to, message) {
     console.log('%s => %s: %s', from, to, message);
 
-    /* console.log("WAITING for reply =============================> ");
-
-     stdin.addListener("data", function (d) {
-     // note:  d is an object, and when converted to a string it will
-     // end with a linefeed.  so we (rather crudely) account for that
-     // with toString() and then trim()
-     /!*console.log("you entered: [" + d.toString().trim() + "]");*!/
-     if(d.toString().indexOf("/join") >=0)
-     bot.join("#heriot");
-     if(d.toString().indexOf("/list") >=0)
-     bot.list();
-     if(d.toString().indexOf("/topic") >=0)
-     bot.topic("#heriot","max");
-     if(d.toString().indexOf("/names") >=0)
-     bot.names("#othertest");
-     if(d.toString().indexOf("/notice") >=0)
-     bot.notice("anon2405", "testing notice");
-     if(d.toString().indexOf("/part") >=0)
-     bot.part("#othertest");
-     if(d.toString().indexOf("/whois") >=0)
-     bot.whois("anon2405");
-     else
-     bot.say(to, d.toString().trim());
-
-     });*/
-
     if (to.match(/^[#&]/)) {
         // channel message
         if (message.match(/the/i)) {
