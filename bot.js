@@ -1,11 +1,15 @@
 #!/usr/bin/env node
-
 var irc = require('./lib/irc.js');
+/*var bot;
 
-var bot = new irc.Client('chat.us.freenode.net', 'nodebot', {
-    debug: true,
-    channels: [/*'#test', */'#othertest']
-});
+function initConn(irnick) {
+    bot = new irc.Client('chat.us.freenode.net', irnick, {
+        debug: true,
+        channels: [/!*'#test', *!/'#othertest']
+    });
+    alert("using bot.js");
+
+}*/
 
 
 /* PROCESSING USER INPUT from console - stdin */
@@ -16,19 +20,19 @@ stdin.addListener("data", function (d) {
     // end with a linefeed.  so we (rather crudely) account for that
     // with toString() and then trim()
     /*console.log("you entered: [" + d.toString().trim() + "]");*/
-    if(d.toString().indexOf("/join") >=0)
+    if (d.toString().indexOf("/join") >= 0)
         bot.join("#heriot");
-    if(d.toString().indexOf("/list") >=0)
+    if (d.toString().indexOf("/list") >= 0)
         bot.list();
-    if(d.toString().indexOf("/topic") >=0)
-        bot.topic("#heriot","max");
-    if(d.toString().indexOf("/names") >=0)
+    if (d.toString().indexOf("/topic") >= 0)
+        bot.topic("#heriot", "max");
+    if (d.toString().indexOf("/names") >= 0)
         bot.names("#othertest");
-    if(d.toString().indexOf("/notice") >=0)
+    if (d.toString().indexOf("/notice") >= 0)
         bot.notice("anon2405", "testing notice");
-    if(d.toString().indexOf("/part") >=0)
+    if (d.toString().indexOf("/part") >= 0)
         bot.part("#othertest");
-    if(d.toString().indexOf("/whois") >=0)
+    if (d.toString().indexOf("/whois") >= 0)
         bot.whois("anon2405");
     else
         bot.say("#othertest", d.toString().trim());
@@ -46,31 +50,31 @@ bot.addListener('message', function (from, message) {
 bot.addListener('message', function (from, to, message) {
     console.log('%s => %s: %s', from, to, message);
 
-   /* console.log("WAITING for reply =============================> ");
+    /* console.log("WAITING for reply =============================> ");
 
-    stdin.addListener("data", function (d) {
-        // note:  d is an object, and when converted to a string it will
-        // end with a linefeed.  so we (rather crudely) account for that
-        // with toString() and then trim()
-        /!*console.log("you entered: [" + d.toString().trim() + "]");*!/
-        if(d.toString().indexOf("/join") >=0)
-            bot.join("#heriot");
-        if(d.toString().indexOf("/list") >=0)
-            bot.list();
-        if(d.toString().indexOf("/topic") >=0)
-            bot.topic("#heriot","max");
-        if(d.toString().indexOf("/names") >=0)
-            bot.names("#othertest");
-        if(d.toString().indexOf("/notice") >=0)
-            bot.notice("anon2405", "testing notice");
-        if(d.toString().indexOf("/part") >=0)
-            bot.part("#othertest");
-        if(d.toString().indexOf("/whois") >=0)
-            bot.whois("anon2405");
-        else
-            bot.say(to, d.toString().trim());
+     stdin.addListener("data", function (d) {
+     // note:  d is an object, and when converted to a string it will
+     // end with a linefeed.  so we (rather crudely) account for that
+     // with toString() and then trim()
+     /!*console.log("you entered: [" + d.toString().trim() + "]");*!/
+     if(d.toString().indexOf("/join") >=0)
+     bot.join("#heriot");
+     if(d.toString().indexOf("/list") >=0)
+     bot.list();
+     if(d.toString().indexOf("/topic") >=0)
+     bot.topic("#heriot","max");
+     if(d.toString().indexOf("/names") >=0)
+     bot.names("#othertest");
+     if(d.toString().indexOf("/notice") >=0)
+     bot.notice("anon2405", "testing notice");
+     if(d.toString().indexOf("/part") >=0)
+     bot.part("#othertest");
+     if(d.toString().indexOf("/whois") >=0)
+     bot.whois("anon2405");
+     else
+     bot.say(to, d.toString().trim());
 
-    });*/
+     });*/
 
     if (to.match(/^[#&]/)) {
         // channel message
