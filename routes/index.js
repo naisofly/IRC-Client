@@ -1,16 +1,19 @@
 var channeldata = require('../lib/channeldata.json');
 var irc = require('../lib/irc.js');
-
+var count = 0;
 var bot;
 var message;
 module.exports = function (app, passport) {
 
     app.locals({
         initConnection: function (name) {
+            if(count<1){
             bot = new irc.Client('chat.us.freenode.net', name, {
                 debug: true,
                 channels: [/*'#test', */'#othertest']
+
             });
+            count++;}
             bot.addListener('pm', function (nick, message) {
                 console.log('Got private message from %s: %s', nick, message);
             });
@@ -34,22 +37,19 @@ module.exports = function (app, passport) {
         sendMess: function(message){
             bot.say("#othertest", message);
         }
-
-        /*addlistner: function () {
-            bot.addListener('message', function (from, message) {
-                console.log('<%s> %s', from, message);
-            });
-        }*/
-    })
-    ;
+    });
 
     app.post('/messaging', function (req, res) {
         console.log(req.body.msg);
-        setTimeout(function () {
             bot.say("#othertest", req.body.msg);
-        }, 1000);
 
-       /* res.redirect("/chat");*/
+        var channels = [];
+        var users = [];
+        channels = channeldata;
+        res.render('chat.ejs', {
+            user: req.user,// get the user out of session and pass to template
+            channellist: channels
+        });
     });
 
     app.get('/', function (req, res) {
