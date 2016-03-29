@@ -72,7 +72,10 @@
             <div class="col-lg-12">
                 <div class="page-header">
                     <h1>
+
+
                         <%- initConnection(user.local.nickname)%>
+
 
                     </h1>
                 </div>
@@ -265,12 +268,14 @@
                 </div>
                 <div class="panel-footer" id="panel-footer">
                     <div class="input-group">
-                        <input id="btn-input" type="text" class="form-control input-sm"/>
+                        <form action = "messaging" class="form-horizontal" method="post">
+                        <input name = "msg" id="btn-input" type="text" class="form-control input-sm"/>
                         <span class="input-group-btn">
-                            <button class="btn btn-warning btn-sm" id="btn-chat">
+                            <button type = "submit" name = "sendbutton" class="btn btn-warning btn-sm" id="btn-chat">
                                 Send
                             </button>
                         </span>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -282,6 +287,7 @@
         <% include partials/footer.ejs %>
 
     </div>
+
 
     <!-- embed kml map-->
     <!-- Bootstrap core JavaScript

@@ -31,6 +31,7 @@ app.configure(function () {
     app.set('view engine', 'ejs');
 
     // required for passport
+   /* app.use(express.static(Document));*/
     app.use(express.session({secret: 'ilovescotchscotchyscotchscotch'})); // session secret
     app.use(passport.initialize());
     app.use(passport.session()); // persistent login sessions

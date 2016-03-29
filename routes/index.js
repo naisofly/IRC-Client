@@ -2,7 +2,7 @@ var channeldata = require('../lib/channeldata.json');
 var irc = require('../lib/irc.js');
 
 var bot;
-
+var message;
 module.exports = function (app, passport) {
 
     app.locals({
@@ -31,6 +31,10 @@ module.exports = function (app, passport) {
             });
         },
 
+        sendMess: function(message){
+            bot.say("#othertest", message);
+        }
+
         /*addlistner: function () {
             bot.addListener('message', function (from, message) {
                 console.log('<%s> %s', from, message);
@@ -38,6 +42,15 @@ module.exports = function (app, passport) {
         }*/
     })
     ;
+
+    app.post('/messaging', function (req, res) {
+        console.log(req.body.msg);
+        setTimeout(function () {
+            bot.say("#othertest", req.body.msg);
+        }, 1000);
+
+       /* res.redirect("/chat");*/
+    });
 
     app.get('/', function (req, res) {
         res.render('index', {title: 'Express'});
