@@ -20,17 +20,17 @@ stdin.addListener("data", function (d) {
     // end with a linefeed.  so we (rather crudely) account for that
     // with toString() and then trim()
     /*console.log("you entered: [" + d.toString().trim() + "]");*/
-    if (d.toString().indexOf("/join") >= 0)
+    if (d.toString().indexOf("/join") >= 0)                     // channel tab
         bot.join("#heriot");
     if (d.toString().indexOf("/list") >= 0)
         bot.list();
     if (d.toString().indexOf("/topic") >= 0)
         bot.topic("#heriot", "max");
-    if (d.toString().indexOf("/names") >= 0)
+    if (d.toString().indexOf("/names") >= 0)                    // People tab in chat.ejs
         bot.names("#othertest");
     if (d.toString().indexOf("/notice") >= 0)
         bot.notice("anon2405", "testing notice");
-    if (d.toString().indexOf("/part") >= 0)
+    if (d.toString().indexOf("/part") >= 0)                     // channel tab
         bot.part("#othertest");
     if (d.toString().indexOf("/whois") >= 0)
         bot.whois("anon2405");

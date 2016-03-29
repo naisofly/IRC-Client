@@ -89,7 +89,31 @@ module.exports = function (app, passport) {
 
     app.post('/chat', function (req, res) {
         /*console.log(req.body.msg);*/
-        bot.say("#othertest", req.body.msg);
+        var msgContent = req.body.msg;
+
+        if (msgContent.toString().toLowerCase().indexOf("/topic") >= 0){
+            var channel = msgContent.split(/\s+/).slice(1,2).toString();
+            var newTopic = msgContent.split(/\s+/).slice(2).join(" ");
+            bot.topic(channel, newTopic);
+            //TODO: no such channel OR you're not in the channel
+        }
+
+        else if (msgContent.toString().toLowerCase().indexOf("/notice") >= 0){
+            var targetNick = msgContent.split(/\s+/).slice(1,2).toString();
+            var noticeMsg = msgContent.split(/\s+/).slice(2).join(" ");
+            bot.notice(targetNick, noticeMsg);
+
+        }
+
+
+        else if (msgContent.toString().toLowerCase().indexOf("/whois") >= 0){
+            var targetNick = msgContent.split(/\s+/).slice(1,2).toString();
+            bot.whois(targetNick);
+            //TODO: handle  whois errors - no such nickname/channel
+        }
+
+        else
+            bot.say("#othertest", msgContent);
 
         var channels = [];
         var users = [];
