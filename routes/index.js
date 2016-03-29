@@ -39,18 +39,7 @@ module.exports = function (app, passport) {
         }
     });
 
-    app.post('/messaging', function (req, res) {
-        console.log(req.body.msg);
-            bot.say("#othertest", req.body.msg);
 
-        var channels = [];
-        var users = [];
-        channels = channeldata;
-        res.render('chat.ejs', {
-            user: req.user,// get the user out of session and pass to template
-            channellist: channels
-        });
-    });
 
     app.get('/', function (req, res) {
         res.render('index', {title: 'Express'});
@@ -96,6 +85,19 @@ module.exports = function (app, passport) {
             channellist: channels // get the user out of session and pass to template
         });
 
+    });
+
+    app.post('/chat', function (req, res) {
+        /*console.log(req.body.msg);*/
+        bot.say("#othertest", req.body.msg);
+
+        var channels = [];
+        var users = [];
+        channels = channeldata;
+        res.render('chat.ejs', {
+            user: req.user,// get the user out of session and pass to template
+            channellist: channels
+        });
     });
 
     app.get('/dashboard', isLoggedIn, function (req, res) {

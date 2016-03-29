@@ -271,10 +271,10 @@
                 </div>
                 <div class="panel-footer" id="panel-footer">
                     <div class="input-group">
-                        <form action = "messaging" class="form-horizontal" method="post">
+                        <form id = "submit" action = "chat" class="form-horizontal" method="post">
                         <input name = "msg" id="btn-input" type="text" class="form-control input-sm"/>
                         <span class="input-group-btn">
-                            <button type = "submit" name = "sendbutton" class="btn btn-warning btn-sm" id="btn-chat">
+                            <button type ="submit" value ="submit" name = "sendbutton" class="btn btn-warning btn-sm" id="btn-chat">
                                 Send
                             </button>
                         </span>
@@ -291,6 +291,17 @@
 
     </div>
 
+    <script>
+        $(document).ready(function  () {
+            $("#submit").on("submit",function  (e) {
+                e.preventDefault();
+
+                $.post("/chat",$(this).serialize(), function( data ) {
+
+                });
+            })
+        })
+    </script>
 
     <!-- embed kml map-->
     <!-- Bootstrap core JavaScript
