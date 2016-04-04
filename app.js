@@ -10,12 +10,32 @@ var path = require('path');
 var flash = require('connect-flash');
 var bodyParser = require('body-parser');
 
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
 mongoose.connect(configDB.url); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
+
+/*if (typeof(app.locals.ircConnection) !== 'undefined'){
+    app.locals.ircConnection.addListener('message', function (from, message) {
+        console.log('<%s> %s', from, message);
+    });
+}*/
+
+
+/*io.on('connection', function(socket){
+    socket.on('chat message', function(msg){
+        io.emit('chat message', msg);
+    });
+});
+
+http.listen(3001, function(){
+    console.log('listening on *:3000');
+});*/
 
 app.configure(function () {
 
@@ -74,7 +94,6 @@ app.configure(function () {
 });
 
 // routes ======================================================================
-require('./routes/index.js')(app, passport); // load our routes and pass in our app and fully configured passport
-
+require('./routes/index.js')(app, passport,io,http); // load our routes and pass in our app and fully configured passport
 
 module.exports = app;
