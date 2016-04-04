@@ -1,11 +1,26 @@
 var channeldata = require('../lib/channeldata.json');
 var irc = require('../lib/irc.js');
+
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
 var count = 0;
 var bot;
 var message;
 var ch ="";
 
+
+
 module.exports = function (app, passport) {
+
+    /*    http.listen(3000, function(){
+     console.log('listening on *:3000');
+     });*/
+
+    /*    http.listen(3000, function(){
+     console.log('listening on *:3000');
+     });*/
 
     app.locals({
         initConnection: function (name) {
@@ -124,7 +139,7 @@ module.exports = function (app, passport) {
     app.post('/chat', function (req, res) {
         /*console.log(req.body.msg);*/
         var msgContent = req.body.msg;
-
+        console.log("post req" + msgContent);
         if (msgContent.toString().toLowerCase().indexOf("/topic") >= 0) {
             var channel = msgContent.split(/\s+/).slice(1, 2).toString();
             var newTopic = msgContent.split(/\s+/).slice(2).join(" ");

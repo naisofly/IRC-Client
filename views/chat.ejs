@@ -76,6 +76,7 @@
 
                         <%- initConnection(user.local.nickname) %>
 
+                        <ul id="messages"></ul>
 
                     </h1>
                 </div>
@@ -270,7 +271,7 @@
                 <div class="panel-footer" id="panel-footer">
                     <div class="input-group">
                         <form id="submit" action="chat" class="form-horizontal" method="post">
-                            <input name="msg" id="btn-input" type="text" class="form-control input-sm"/>
+                            <input name="msg" id="msg-input" type="text" class="form-control input-sm"/>
                         <span class="input-group-btn">
                             <button type="submit" value="submit" name="sendbutton" class="btn btn-warning btn-sm"
                                     id="btn-chat">
@@ -290,24 +291,33 @@
 
     </div>
 
-    <script>
-        $(document).ready(function () {
-            $("#submit").on("submit", function (e) {
-                e.preventDefault();
-
-                $.post("/chat", $(this).serialize(), function (data) {
-
-                });
-            })
-        })
-    </script>
-
     <!-- embed kml map-->
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 
 </div>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+    var socket = io();
+    $('form').submit(function(){/*
+     alert($('#msg-input').val());*/
+        $.post("/chat", $(this).serialize(), function (data) {
+        });
+
+        socket.emit('chat message', $('#msg-input').val());
+        $('#msg-input').val('');
+
+
+
+        return false;
+    });
+    socket.on('chat message', function(msg){
+        alert(msg);
+        $('#messages').append($('<li>').text(msg));
+    });
+</script>
 </body>
 
 </html>

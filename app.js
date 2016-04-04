@@ -10,12 +10,26 @@ var path = require('path');
 var flash = require('connect-flash');
 var bodyParser = require('body-parser');
 
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
 mongoose.connect(configDB.url); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
+
+io.on('connection', function(socket){
+    socket.on('chat message', function(msg){
+        io.emit('chat message', msg);
+    });
+});
+
+
+http.listen(3001, function(){
+    console.log('listening on *:3000');
+});
 
 app.configure(function () {
 
