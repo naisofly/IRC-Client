@@ -35,12 +35,15 @@ module.exports = function (app, passport) {
             bot.addListener('message', function (from, message) {
                 console.log('<%s> %s', from, message);
             });
+
         },
 
         sendMess: function (message) {
             bot.say("#othertest", message);
         }
     });
+
+
 
 
     app.get('/', function (req, res) {
@@ -79,13 +82,13 @@ module.exports = function (app, passport) {
         channels = channeldata;
         ch = req.param('ch');
 
-        console.log("ROUTE", req.route);
+        /*console.log(req.route);*/
 
         if (typeof(ch) !== 'undefined' && ch!==null ) {
-            console.log("Channel to JOIN" + ch);
-            bot.opt.channels.forEach(function(item) {
-                console.log("channel log --->", item);
-                bot.part(item);
+            console.log("Channel to JOIN: " + ch);
+            bot.opt.channels.forEach(function(currentChannel) {
+                console.log("Parting current channel: ", currentChannel);
+                bot.part(currentChannel);
             });
             bot.join(ch);
         }
@@ -144,7 +147,7 @@ module.exports = function (app, passport) {
         }
 
         else
-            bot.say("#othertest", msgContent);
+            bot.say(bot.opt.channels[0], msgContent);
 
         var channels = [];
         var users = [];
