@@ -3,6 +3,8 @@
 <head>
     <% include partials/head.ejs %>
 
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Bootstrap core CSS -->
     <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="/stylesheets/custom.css" rel="stylesheet" type="text/css"/>
@@ -89,7 +91,7 @@
 
     <div class="row">
         <div class="col-lg-4">
-            <div class="list-group" style="height: 400px; overflow-y:scroll; overflow-x: hidden;">
+            <div class="list-group" style="height: 520px; overflow-y:scroll; overflow-x: hidden;">
 
                 <form class="list-group-item active" action="#">
 
@@ -159,11 +161,12 @@
                 </div>
 
                 <div class="panel-body" id="replacement-target">
-                    <ul class="chat">
-                        <li class="left clearfix"><span class="chat-img pull-left">
+                    <ul class="chat" id="chatPanel">
+                        <li class="left clearfix">
+                            <span class="chat-img pull-left">
                             <img src="http://placehold.it/50/55C1E7/fff&amp;text=V" alt="User Avatar"
                                  class="img-circle"/>
-                        </span>
+                            </span>
                             <div class="chat-body clearfix">
                                 <div class="header">
                                     <strong class="primary-font">Vincent Vega</strong>
@@ -178,10 +181,11 @@
                                 </p>
                             </div>
                         </li>
-                        <li class="right clearfix"><span class="chat-img pull-right">
+                        <li class="right clearfix">
+                            <span class="chat-img pull-right">
                             <img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar"
                                  class="img-circle"/>
-                        </span>
+                            </span>
                             <div class="chat-body clearfix">
                                 <div class="header">
                                     <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago
@@ -193,10 +197,11 @@
                                 </p>
                             </div>
                         </li>
-                        <li class="left clearfix"><span class="chat-img pull-left">
+                        <!--<li class="left clearfix">
+                            <span class="chat-img pull-left">
                             <img src="http://placehold.it/50/55C1E7/fff&amp;text=V" alt="User Avatar"
                                  class="img-circle"/>
-                        </span>
+                            </span>
                             <div class="chat-body clearfix">
                                 <div class="header">
                                     <strong class="primary-font">Vincent Vega</strong>
@@ -212,10 +217,11 @@
                                 </p>
                             </div>
                         </li>
-                        <li class="right clearfix"><span class="chat-img pull-right">
+                        <li class="right clearfix">
+                            <span class="chat-img pull-right">
                             <img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar"
                                  class="img-circle"/>
-                        </span>
+                            </span>
                             <div class="chat-body clearfix">
                                 <div class="header">
                                     <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>12 mins ago
@@ -227,10 +233,11 @@
                                 </p>
                             </div>
                         </li>
-                        <li class="left clearfix"><span class="chat-img pull-left">
+                        <li class="left clearfix">
+                            <span class="chat-img pull-left">
                             <img src="http://placehold.it/50/55C1E7/fff&amp;text=V" alt="User Avatar"
                                  class="img-circle"/>
-                        </span>
+                            </span>
                             <div class="chat-body clearfix">
                                 <div class="header">
                                     <strong class="primary-font">Vincent Vega</strong>
@@ -250,10 +257,11 @@
                                 </p>
                             </div>
                         </li>
-                        <li class="right clearfix"><span class="chat-img pull-right">
+                        <li class="right clearfix">
+                            <span class="chat-img pull-right">
                             <img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar"
                                  class="img-circle"/>
-                        </span>
+                            </span>
                             <div class="chat-body clearfix">
                                 <div class="header">
                                     <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>5 mins ago
@@ -265,7 +273,7 @@
                                     with Cheese?
                                 </p>
                             </div>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
                 <div class="panel-footer" id="panel-footer">
@@ -301,7 +309,7 @@
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
     var socket = io();
-    $('form').submit(function(){/*
+    $('form').submit(function () {/*
      alert($('#msg-input').val());*/
         $.post("/chat", $(this).serialize(), function (data) {
         });
@@ -311,14 +319,39 @@
 
         return false;
     });
-    socket.on('chat message', function(msg){
+    socket.on('chat message', function (msg) {
         /*alert(msg);*/
-        $('#messages').append($('<li>').text(msg));
+        $('#chatPanel').append($('<li class="right clearfix">').append(
+                $('<span class="chat-img pull-right"> <img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar" class="img-circle"/> </span>')
+        ).append(
+                $('<div class="chat-body clearfix">').append(
+                        $('<div class="header">').append(
+                                '<small class=" text-muted"> <span class="glyphicon glyphicon-time"></span> 15 mins ago </small>').append(
+                                $('<strong class="pull-right primary-font">').text("User Nick"))).append(
+                        $('</strong>' +
+                                '</div>' +
+                                '<p>').text(msg).append(
+                                $('</p> </div> </li>')
+                        ))));
     });
 
-    socket.on('incoming_chat message', function(msg){
-       /* alert(msg);*/
-        $('#messages').append($('<li>').text(msg));
+    socket.on('incoming_chat message', function (msg) {
+        /* alert(msg);*/
+        /*$('#chatPanel').append($('<li class="left clearfix">').text(msg));*/
+        $('#chatPanel').append($('<li class="left clearfix">').append(
+                $('<span class="chat-img pull-left"> <img src="http://placehold.it/50/55C1E7/fff&amp;text=YOU" alt="User Avatar" class="img-circle"/> </span>')
+        ).append(
+                $('<div class="chat-body clearfix">').append(
+                        $('<div class="header">').append(
+                                $('<strong class="primary-font">').text("Incoming User")).append(
+                                $('</strong>' +
+                                        '<small class="pull-right text-muted"> <span class="glyphicon glyphicon-time"> </span> 15 mins ago </small> ' +
+                                        '</div>')).append(
+                                $('<p>').text(msg)).append(
+                                $('</p> </div> </li>')
+                        )
+                )
+        ));
     });
 </script>
 </body>
