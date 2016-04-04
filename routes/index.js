@@ -22,40 +22,7 @@ module.exports = function (app, passport,io,http) {
         console.log('listening on *:3000');
     });
 
-    app.locals({
-        initConnection: function (name) {
-            if (count < 1) {
-                bot = new irc.Client('chat.us.freenode.net', name, {
-                    debug: true,
-                    channels: [/*'#test', */'#othertest']
 
-                });
-                count++;
-            }
-            bot.addListener('pm', function (nick, message) {
-                console.log('Got private message from %s: %s', nick, message);
-            });
-            bot.addListener('join', function (channel, who) {
-                console.log('%s has joined %s', who, channel);
-            });
-            bot.addListener('part', function (channel, who, reason) {
-                console.log('%s has left %s: %s', who, channel, reason);
-            });
-            bot.addListener('kick', function (channel, who, by, reason) {
-                console.log('%s was kicked from %s by %s: %s', who, channel, by, reason);
-            });
-            bot.addListener('error', function (message) {
-                console.error('ERROR: %s: %s', message.command, message.args.join(' '));
-            });
-            bot.addListener('message', function (from, to, message) {
-                console.log('%s => %s: %s', from, to, message);
-                io.emit('incoming_chat message', message);
-             });
-
-        }
-
-
-    });
 
 
     app.get('/', function (req, res) {
@@ -119,6 +86,34 @@ module.exports = function (app, passport,io,http) {
          channels = channels.concat(item);
 
          });*/
+
+        if (count < 1) {
+            bot = new irc.Client('chat.us.freenode.net', req.user.local.nickname, {
+                debug: true,
+                channels: [/*'#test', */'#othertest']
+
+            });
+            count++;
+        }
+        bot.addListener('pm', function (nick, message) {
+            console.log('Got private message from %s: %s', nick, message);
+        });
+        bot.addListener('join', function (channel, who) {
+            console.log('%s has joined %s', who, channel);
+        });
+        bot.addListener('part', function (channel, who, reason) {
+            console.log('%s has left %s: %s', who, channel, reason);
+        });
+        bot.addListener('kick', function (channel, who, by, reason) {
+            console.log('%s was kicked from %s by %s: %s', who, channel, by, reason);
+        });
+        bot.addListener('error', function (message) {
+            console.error('ERROR: %s: %s', message.command, message.args.join(' '));
+        });
+        bot.addListener('message', function (from, to, message) {
+            console.log('%s => %s: %s', from, to, message);
+            io.emit('incoming_chat message', message);
+        });
 
         var ch = req.param('ch');
 
