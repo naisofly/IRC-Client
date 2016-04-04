@@ -3,17 +3,20 @@ var irc = require('../lib/irc.js');
 var count = 0;
 var bot;
 var message;
+var ch ="";
+
 module.exports = function (app, passport) {
 
     app.locals({
         initConnection: function (name) {
-            if(count<1){
-            bot = new irc.Client('chat.us.freenode.net', name, {
-                debug: true,
-                channels: [/*'#test', */'#othertest']
+            if (count < 1) {
+                bot = new irc.Client('chat.us.freenode.net', name, {
+                    debug: true,
+                    channels: [/*'#test', */'#othertest']
 
-            });
-            count++;}
+                });
+                count++;
+            }
             bot.addListener('pm', function (nick, message) {
                 console.log('Got private message from %s: %s', nick, message);
             });
@@ -34,11 +37,10 @@ module.exports = function (app, passport) {
             });
         },
 
-        sendMess: function(message){
+        sendMess: function (message) {
             bot.say("#othertest", message);
         }
     });
-
 
 
     app.get('/', function (req, res) {
@@ -71,6 +73,28 @@ module.exports = function (app, passport) {
     }));
 
 
+    app.get('/joinch/:ch?', isLoggedIn, function (req, res) {
+        var channels = [];
+        var users = [];
+        channels = channeldata;
+        ch = req.param('ch');
+
+        console.log("ROUTE", req.route);
+
+        if (typeof(ch) !== 'undefined' && ch!==null ) {
+            console.log("Channel to JOIN" + ch);
+            bot.opt.channels.forEach(function(item) {
+                console.log("channel log --->", item);
+                bot.part(item);
+            });
+            bot.join(ch);
+        }
+        res.render('chat.ejs', {
+            user: req.user,
+            channellist: channels // get the user out of session and pass to template
+        });
+    });
+
     app.get('/chat', isLoggedIn, function (req, res) {
 
         var channels = [];
@@ -80,6 +104,13 @@ module.exports = function (app, passport) {
          channels = channels.concat(item);
 
          });*/
+
+        var ch = req.param('ch');
+
+        if (typeof(ch) !== 'undefined' && ch!==null ) {
+            console.log("Channel to JOIN" + ch);
+            bot.join(ch);
+        }
         res.render('chat.ejs', {
             user: req.user,
             channellist: channels // get the user out of session and pass to template
@@ -91,23 +122,23 @@ module.exports = function (app, passport) {
         /*console.log(req.body.msg);*/
         var msgContent = req.body.msg;
 
-        if (msgContent.toString().toLowerCase().indexOf("/topic") >= 0){
-            var channel = msgContent.split(/\s+/).slice(1,2).toString();
+        if (msgContent.toString().toLowerCase().indexOf("/topic") >= 0) {
+            var channel = msgContent.split(/\s+/).slice(1, 2).toString();
             var newTopic = msgContent.split(/\s+/).slice(2).join(" ");
             bot.topic(channel, newTopic);
             //TODO: no such channel OR you're not in the channel
         }
 
-        else if (msgContent.toString().toLowerCase().indexOf("/notice") >= 0){
-            var targetNick = msgContent.split(/\s+/).slice(1,2).toString();
+        else if (msgContent.toString().toLowerCase().indexOf("/notice") >= 0) {
+            var targetNick = msgContent.split(/\s+/).slice(1, 2).toString();
             var noticeMsg = msgContent.split(/\s+/).slice(2).join(" ");
             bot.notice(targetNick, noticeMsg);
 
         }
 
 
-        else if (msgContent.toString().toLowerCase().indexOf("/whois") >= 0){
-            var targetNick = msgContent.split(/\s+/).slice(1,2).toString();
+        else if (msgContent.toString().toLowerCase().indexOf("/whois") >= 0) {
+            var targetNick = msgContent.split(/\s+/).slice(1, 2).toString();
             bot.whois(targetNick);
             //TODO: handle  whois errors - no such nickname/channel
         }

@@ -74,10 +74,7 @@
                     <h1>
 
 
-
-                        <%-initConnection(user.local.nickname)%>
-
-
+                        <%- initConnection(user.local.nickname) %>
 
 
                     </h1>
@@ -101,7 +98,8 @@
                 <% channellist.forEach(function(item) { %>
                 <div class="list-group-item">
                     <!--<a href="chat" class="btn btn-link"><span class="badge"><%= item.users %></span><%= item.name %></a>-->
-                    <span class="badge"><%= item.users %></span><%= item.name %>
+                    <span class="badge"><%= item.users %></span>
+                    <a href="/joinch?ch=<%= encodeURIComponent(item.name) %>"> <%= item.name %> </a>
                 </div>
 
                 <% }); %>
@@ -271,10 +269,11 @@
                 </div>
                 <div class="panel-footer" id="panel-footer">
                     <div class="input-group">
-                        <form id = "submit" action = "chat" class="form-horizontal" method="post">
-                        <input name = "msg" id="btn-input" type="text" class="form-control input-sm"/>
+                        <form id="submit" action="chat" class="form-horizontal" method="post">
+                            <input name="msg" id="btn-input" type="text" class="form-control input-sm"/>
                         <span class="input-group-btn">
-                            <button type ="submit" value ="submit" name = "sendbutton" class="btn btn-warning btn-sm" id="btn-chat">
+                            <button type="submit" value="submit" name="sendbutton" class="btn btn-warning btn-sm"
+                                    id="btn-chat">
                                 Send
                             </button>
                         </span>
@@ -292,11 +291,11 @@
     </div>
 
     <script>
-        $(document).ready(function  () {
-            $("#submit").on("submit",function  (e) {
+        $(document).ready(function () {
+            $("#submit").on("submit", function (e) {
                 e.preventDefault();
 
-                $.post("/chat",$(this).serialize(), function( data ) {
+                $.post("/chat", $(this).serialize(), function (data) {
 
                 });
             })
