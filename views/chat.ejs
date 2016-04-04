@@ -309,12 +309,15 @@
         socket.emit('chat message', $('#msg-input').val());
         $('#msg-input').val('');
 
-
-
         return false;
     });
     socket.on('chat message', function(msg){
-        alert(msg);
+        /*alert(msg);*/
+        $('#messages').append($('<li>').text(msg));
+    });
+
+    socket.on('incoming_chat message', function(msg){
+       /* alert(msg);*/
         $('#messages').append($('<li>').text(msg));
     });
 </script>

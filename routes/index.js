@@ -2,25 +2,25 @@ var channeldata = require('../lib/channeldata.json');
 var irc = require('../lib/irc.js');
 
 var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+/*var http = require('http').Server(app);
+var io = require('socket.io')(http);*/
 
 var count = 0;
 var bot;
 var message;
-var ch ="";
+var ch = "";
 
 
+module.exports = function (app, passport,io,http) {
 
-module.exports = function (app, passport) {
-
-    /*    http.listen(3000, function(){
-     console.log('listening on *:3000');
-     });*/
-
-    /*    http.listen(3000, function(){
-     console.log('listening on *:3000');
-     });*/
+    io.on('connection', function (socket) {
+        socket.on('chat message', function (msg) {
+            io.emit('chat message', msg);
+        });
+    });
+    http.listen(3001, function () {
+        console.log('listening on *:3000');
+    });
 
     app.locals({
         initConnection: function (name) {
@@ -47,18 +47,15 @@ module.exports = function (app, passport) {
             bot.addListener('error', function (message) {
                 console.error('ERROR: %s: %s', message.command, message.args.join(' '));
             });
-            bot.addListener('message', function (from, message) {
-                console.log('<%s> %s', from, message);
-            });
+            bot.addListener('message', function (from, to, message) {
+                console.log('%s => %s: %s', from, to, message);
+                io.emit('incoming_chat message', message);
+             });
 
-        },
-
-        sendMess: function (message) {
-            bot.say("#othertest", message);
         }
+
+
     });
-
-
 
 
     app.get('/', function (req, res) {
@@ -99,9 +96,9 @@ module.exports = function (app, passport) {
 
         /*console.log(req.route);*/
 
-        if (typeof(ch) !== 'undefined' && ch!==null ) {
+        if (typeof(ch) !== 'undefined' && ch !== null) {
             console.log("Channel to JOIN: " + ch);
-            bot.opt.channels.forEach(function(currentChannel) {
+            bot.opt.channels.forEach(function (currentChannel) {
                 console.log("Parting current channel: ", currentChannel);
                 bot.part(currentChannel);
             });
@@ -125,7 +122,7 @@ module.exports = function (app, passport) {
 
         var ch = req.param('ch');
 
-        if (typeof(ch) !== 'undefined' && ch!==null ) {
+        if (typeof(ch) !== 'undefined' && ch !== null) {
             console.log("Channel to JOIN" + ch);
             bot.join(ch);
         }
