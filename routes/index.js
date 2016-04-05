@@ -219,6 +219,11 @@ module.exports = function (app, passport,io,http) {
     });
 
     app.get('/logout', function (req, res) {
+        bot.opt.channels.forEach(function (currentChannel) {
+
+            console.log("Parting current channel: ", currentChannel);
+            bot.part(currentChannel);
+        });
         req.logout();
         res.redirect('/');
     });

@@ -13,4 +13,4 @@ http://stackoverflow.com/questions/28651028/cannot-find-module-build-release-bso
 4. Parsing user input -DONE
 5. Add channel input when logging in and parsing it as well - get list of names for current channel	   
 6. long polling - display chat messages -DONE
-7. QUIT upon signout
+7. QUIT upon signout - done
