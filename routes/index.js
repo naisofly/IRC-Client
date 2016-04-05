@@ -10,6 +10,8 @@ var bot;
 var message;
 var ch = "";
 var flash_message = "";
+var temp;
+
 
 
 module.exports = function (app, passport,io,http) {
@@ -22,6 +24,7 @@ module.exports = function (app, passport,io,http) {
     http.listen(3001, function () {
         console.log('listening on *:3000');
     });
+
 
 
 
@@ -87,6 +90,8 @@ module.exports = function (app, passport,io,http) {
         var channels = [];
         var users = [];
         channels = channeldata;
+        /*if (typeof(req.body.chann) !== 'undefined'){*/
+        console.log(req.body.channeel);
         /*channeldata.forEach(function(item) {
          channels = channels.concat(item);
 
@@ -97,7 +102,7 @@ module.exports = function (app, passport,io,http) {
         if (count < 1) {
             bot = new irc.Client('chat.us.freenode.net', req.user.local.nickname, {
                 debug: true,
-                channels: [/*'#test', */'#othertest']
+                channels: [/*'#test', */]
 
             });
             count++;
@@ -151,7 +156,7 @@ module.exports = function (app, passport,io,http) {
             });
 
             bot.addListener('names', function (args, userList) {
-                console.log("index " + args);
+               /* console.log("index " + args);*/
                 Object.keys(userList).forEach(function (item) {
                     console.log(item);
                     io.emit('list_users', item);
@@ -178,6 +183,7 @@ module.exports = function (app, passport,io,http) {
     app.post('/chat', function (req, res) {
         /*console.log(req.body.msg);*/
         var msgContent = req.body.msg;
+
         /*console.log("post req" + msgContent);*/
         if (msgContent.toString().toLowerCase().indexOf("/topic") >= 0) {
             var channel = msgContent.split(/\s+/).slice(1, 2).toString();
@@ -185,6 +191,7 @@ module.exports = function (app, passport,io,http) {
             bot.topic(channel, newTopic);
             //TODO: no such channel OR you're not in the channel
         }
+
 
         else if (msgContent.toString().toLowerCase().indexOf("/notice") >= 0) {
             var targetNick = msgContent.split(/\s+/).slice(1, 2).toString();

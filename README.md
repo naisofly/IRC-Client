@@ -11,6 +11,7 @@ http://stackoverflow.com/questions/28651028/cannot-find-module-build-release-bso
 2. Display messages on panel- flash messages -DONE		   
 3. List of users for current channel
 4. Parsing user input -DONE
-5. Add channel input when logging in and parsing it as well - get list of names for current channel	   
+5. Add channel input  -  DONE
+get list of names for current channel
 6. long polling - display chat messages -DONE
 7. QUIT upon signout - done
