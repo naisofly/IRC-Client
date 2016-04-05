@@ -36,6 +36,7 @@ module.exports = function (app, passport,io,http) {
     });
 
     app.post('/login', passport.authenticate('local-login', {
+
         successRedirect: '/chat', // redirect to the secure profile section
         failureRedirect: '/login', // redirect back to the signup page if there is an error
         failureFlash: true // allow flash messages
@@ -66,11 +67,14 @@ module.exports = function (app, passport,io,http) {
         if (typeof(ch) !== 'undefined' && ch !== null) {
             console.log("Channel to JOIN: " + ch);
             bot.opt.channels.forEach(function (currentChannel) {
+
                 console.log("Parting current channel: ", currentChannel);
                 bot.part(currentChannel);
             });
             bot.join(ch);
+            /*bot.names(ch);*/
         }
+
         res.render('chat.ejs', {
             user: req.user,
             channellist: channels // get the user out of session and pass to template
@@ -84,6 +88,8 @@ module.exports = function (app, passport,io,http) {
         channels = channeldata;
         /*channeldata.forEach(function(item) {
          channels = channels.concat(item);
+
+
 
          });*/
 
@@ -115,12 +121,23 @@ module.exports = function (app, passport,io,http) {
             io.emit('incoming_chat message', message);
         });
 
-        var ch = req.param('ch');
+        bot.addListener('names', function ( args,userList) {
+            console.log("index " + args);
+            Object.keys(userList).forEach(function(item){
+                console.log(item);
+                io.emit('list_users', item);
 
-        if (typeof(ch) !== 'undefined' && ch !== null) {
-            console.log("Channel to JOIN" + ch);
-            bot.join(ch);
-        }
+            });
+
+        });
+
+
+
+
+
+
+
+
         res.render('chat.ejs', {
             user: req.user,
             channellist: channels // get the user out of session and pass to template

@@ -141,139 +141,16 @@
                 </div>
 
                 <div id="contentContainer" style="display: none;height: 400px;">
-                    <div class="topicPeople">
-                        <ul>
-                            <li><img class="profileImage" src="/images/profilepic.png" alt="Profile Picture"/>Ali</li>
-                            <li><img class="profileImage" src="/images/profilepic.png" alt="Profile Picture"/>Anton</li>
-                            <li><img class="profileImage" src="/images/profilepic.png" alt="Profile Picture"/>Saeed</li>
-                            <li><img class="profileImage" src="/images/profilepic.png" alt="Profile Picture"/>Tarun</li>
-                            <li><img class="profileImage" src="/images/profilepic.png" alt="Profile Picture"/>Naiyarah
-                            </li>
-                            <li><img class="profileImage" src="/images/profilepic.png" alt="Profile Picture"/>Mic Brady
-                            </li>
-                            <li><img class="profileImage" src="/images/profilepic.png" alt="Profile Picture"/>Vardy</li>
-                            <li><img class="profileImage" src="/images/profilepic.png" alt="Profile Picture"/>Nick</li>
-                            <li><img class="profileImage" src="/images/profilepic.png" alt="Profile Picture"/>Lampard
-                            </li>
-                            <li><img class="profileImage" src="/images/profilepic.png" alt="Profile Picture"/>John</li>
+                    <div class="topicPeople" >
+                        <ul id = "peoplePanel">
+
                         </ul>
                     </div>
                 </div>
 
                 <div class="panel-body" id="replacement-target">
                     <ul class="chat" id="chatPanel">
-                        <li class="left clearfix">
-                            <span class="chat-img pull-left">
-                            <img src="http://placehold.it/50/55C1E7/fff&amp;text=V" alt="User Avatar"
-                                 class="img-circle"/>
-                            </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Vincent Vega</strong>
-                                    <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>15 mins ago
-                                    </small>
-                                </div>
-                                <p>
-                                    You'll dig it the most. But you know
-                                    what the funniest thing about Europe
-                                    is?
-                                </p>
-                            </div>
-                        </li>
-                        <li class="right clearfix">
-                            <span class="chat-img pull-right">
-                            <img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar"
-                                 class="img-circle"/>
-                            </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago
-                                    </small>
-                                    <strong class="pull-right primary-font">Jules Winnfield</strong>
-                                </div>
-                                <p>
-                                    What?
-                                </p>
-                            </div>
-                        </li>
-                        <!--<li class="left clearfix">
-                            <span class="chat-img pull-left">
-                            <img src="http://placehold.it/50/55C1E7/fff&amp;text=V" alt="User Avatar"
-                                 class="img-circle"/>
-                            </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Vincent Vega</strong>
-                                    <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>13 mins ago
-                                    </small>
-                                </div>
-                                <p>
-                                    It's the little differences. A lotta
-                                    the same shit we got here, they got
-                                    there, but there they're a little
-                                    different.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="right clearfix">
-                            <span class="chat-img pull-right">
-                            <img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar"
-                                 class="img-circle"/>
-                            </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>12 mins ago
-                                    </small>
-                                    <strong class="pull-right primary-font">Jules Winnfield</strong>
-                                </div>
-                                <p>
-                                    Examples?
-                                </p>
-                            </div>
-                        </li>
-                        <li class="left clearfix">
-                            <span class="chat-img pull-left">
-                            <img src="http://placehold.it/50/55C1E7/fff&amp;text=V" alt="User Avatar"
-                                 class="img-circle"/>
-                            </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Vincent Vega</strong>
-                                    <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>10 mins ago
-                                    </small>
-                                </div>
-                                <p>
-                                    Well, in Amsterdam, you can buy beer
-                                    in a movie theatre. And I don't mean
-                                    in a paper cup either. They give you
-                                    a glass of beer, like in a bar. In
-                                    Paris, you can buy beer at
-                                    MacDonald's. Also, you know what
-                                    they call a Quarter Pounder with
-                                    Cheese in Paris?
-                                </p>
-                            </div>
-                        </li>
-                        <li class="right clearfix">
-                            <span class="chat-img pull-right">
-                            <img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar"
-                                 class="img-circle"/>
-                            </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>5 mins ago
-                                    </small>
-                                    <strong class="pull-right primary-font">Jules Winnfield</strong>
-                                </div>
-                                <p>
-                                    They don't call it a Quarter Pounder
-                                    with Cheese?
-                                </p>
-                            </div>
-                        </li>-->
+
                     </ul>
                 </div>
                 <div class="panel-footer" id="panel-footer">
@@ -319,6 +196,12 @@
 
         return false;
     });
+
+    socket.on('list_users', function (user) {
+        /*console.log("chat.ejs," +users.toString());*/
+        $('#peoplePanel').append($('<li>').text(user));
+    });
+
     socket.on('chat message', function (msg) {
         /*alert(msg);*/
         $('#chatPanel').append($('<li class="right clearfix">').append(
@@ -327,7 +210,7 @@
                 $('<div class="chat-body clearfix">').append(
                         $('<div class="header">').append(
                                 '<small class=" text-muted"> <span class="glyphicon glyphicon-time"></span> 15 mins ago </small>').append(
-                                $('<strong class="pull-right primary-font">').text("User Nick"))).append(
+                                $('<strong class="pull-right primary-font">').text("<%=user.local.nickname%>"))).append(
                         $('</strong>' +
                                 '</div>' +
                                 '<p>').text(msg).append(
