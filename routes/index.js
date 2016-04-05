@@ -9,6 +9,7 @@ var count = 0;
 var bot;
 var message;
 var ch = "";
+var flash_message = "";
 
 
 module.exports = function (app, passport,io,http) {
@@ -100,36 +101,47 @@ module.exports = function (app, passport,io,http) {
 
             });
             count++;
-        }
-        bot.addListener('pm', function (nick, message) {
-            console.log('Got private message from %s: %s', nick, message);
-        });
-        bot.addListener('join', function (channel, who) {
-            console.log('%s has joined %s', who, channel);
-        });
-        bot.addListener('part', function (channel, who, reason) {
-            console.log('%s has left %s: %s', who, channel, reason);
-        });
-        bot.addListener('kick', function (channel, who, by, reason) {
-            console.log('%s was kicked from %s by %s: %s', who, channel, by, reason);
-        });
-        bot.addListener('error', function (message) {
-            console.error('ERROR: %s: %s', message.command, message.args.join(' '));
-        });
-        bot.addListener('message', function (from, to, message) {
-            console.log('%s => %s: %s', from, to, message);
-            io.emit('incoming_chat message', message);
-        });
 
-        bot.addListener('names', function ( args,userList) {
-            console.log("index " + args);
-            Object.keys(userList).forEach(function(item){
-                console.log(item);
-                io.emit('list_users', item);
-
+            bot.addListener('pm', function (nick, message) {
+                console.log('Got private message from %s: %s', nick, message);
+                flash_message = "Got private message from " + nick + ": " + message;
+                io.emit('notifications', flash_message);
+            });
+            bot.addListener('join', function (channel, who) {
+                console.log('%s has joined %s', who, channel);
+                flash_message = who + " has joined " + channel;
+                io.emit('notifications', flash_message);
+            });
+            bot.addListener('part', function (channel, who, reason) {
+                console.log('%s has left %s: %s', who, channel, reason);
+                flash_message = who + " has left " + channel + ": " + reason;
+                io.emit('notifications', flash_message);
+            });
+            bot.addListener('kick', function (channel, who, by, reason) {
+                console.log('%s was kicked from %s by %s: %s', who, channel, by, reason);
+                flash_message = who + " was kicked from " + channel + " by " + by + ": " + reason;
+                io.emit('notifications', flash_message);
+            });
+            bot.addListener('error', function (message) {
+                console.error('ERROR: %s: %s', message.command, message.args.join(' '));
+                flash_message = "ERROR: " + message.command + ": " + message.args.join(' ');
+                io.emit('notifications', flash_message);
+            });
+            bot.addListener('message', function (from, to, message) {
+                console.log('%s => %s: %s', from, to, message);
+                io.emit('incoming_chat message', message);
             });
 
-        });
+            bot.addListener('names', function (args, userList) {
+                console.log("index " + args);
+                Object.keys(userList).forEach(function (item) {
+                    console.log(item);
+                    io.emit('list_users', item);
+
+                });
+
+            });
+        }
 
 
 
@@ -148,7 +160,7 @@ module.exports = function (app, passport,io,http) {
     app.post('/chat', function (req, res) {
         /*console.log(req.body.msg);*/
         var msgContent = req.body.msg;
-        console.log("post req" + msgContent);
+        /*console.log("post req" + msgContent);*/
         if (msgContent.toString().toLowerCase().indexOf("/topic") >= 0) {
             var channel = msgContent.split(/\s+/).slice(1, 2).toString();
             var newTopic = msgContent.split(/\s+/).slice(2).join(" ");
