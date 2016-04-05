@@ -224,7 +224,7 @@
                         ))));
     });
 
-    socket.on('incoming_chat message', function (msg) {
+    socket.on('incoming_chat message', function (msg,from) {
         /* alert(msg);*/
         /*$('#chatPanel').append($('<li class="left clearfix">').text(msg));*/
         $('#chatPanel').append($('<li class="left clearfix">').append(
@@ -232,7 +232,7 @@
         ).append(
                 $('<div class="chat-body clearfix">').append(
                         $('<div class="header">').append(
-                                $('<strong class="primary-font">').text("Incoming User")).append(
+                                $('<strong class="primary-font">').text(from)).append(
                                 $('</strong>' +
                                         '<small class="pull-right text-muted"> <span class="glyphicon glyphicon-time"> </span> 15 mins ago </small> ' +
                                         '</div>')).append(
