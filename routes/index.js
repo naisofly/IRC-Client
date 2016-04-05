@@ -156,10 +156,11 @@ module.exports = function (app, passport,io,http) {
             });
 
             bot.addListener('names', function (args, userList) {
-               /* console.log("index " + args);*/
+                console.log("UserList Channel -------------> " + args);
                 Object.keys(userList).forEach(function (item) {
-                    console.log(item);
+
                     io.emit('list_users', item);
+                    console.log("UserList------------------->"+item);
 
                 });
 

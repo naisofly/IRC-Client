@@ -215,7 +215,7 @@
     });
 
     socket.on('list_users', function (user) {
-        console.log("chat.ejs," +users.toString());
+        alert("chat.ejs," +user.toString());
         $('#peoplePanel').append($('<li>').text(user));
     });
 
