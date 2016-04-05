@@ -227,7 +227,7 @@
                 $('<div class="chat-body clearfix">').append(
                         $('<div class="header">').append(
                                 '<small class=" text-muted"> <span class="glyphicon glyphicon-time"></span> 15 mins ago </small>').append(
-                                $('<strong class="pull-right primary-font">').text("ejs user"))).append(
+                                $('<strong class="pull-right primary-font">').text("<%= user.local.nickname %>"))).append(
                         $('</strong>' +
                                 '</div>' +
                                 '<p>').text(msg).append(
