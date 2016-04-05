@@ -112,6 +112,14 @@ module.exports = function (app, passport,io,http) {
                 flash_message = who + " has joined " + channel;
                 io.emit('notifications', flash_message);
             });
+
+            bot.addListener('whois', function (message) {
+                console.log( message.nick);
+                /*flash_message = message.nick + " " + message.user + " " + message.nick + " "*/;
+                flash_message = JSON.stringify(message,null,'\n');
+                io.emit('incoming_chat message', flash_message);
+            });
+
             bot.addListener('part', function (channel, who, reason) {
                 console.log('%s has left %s: %s', who, channel, reason);
                 flash_message = who + " has left " + channel + ": " + reason;
