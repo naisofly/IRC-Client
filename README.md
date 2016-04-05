@@ -9,9 +9,8 @@ http://stackoverflow.com/questions/28651028/cannot-find-module-build-release-bso
 #TODO
 1. JOIN/PART when joining/leaving channel. -DONE
 2. Display messages on panel- flash messages -DONE		   
-3. List of users for current channel
+3. List of users for current channel -DONE
 4. Parsing user input -DONE
 5. Add channel input  -  DONE
-get list of names for current channel
 6. long polling - display chat messages -DONE
 7. QUIT upon signout - done
