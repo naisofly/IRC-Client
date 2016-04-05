@@ -122,6 +122,16 @@ module.exports = function (app, passport,io,http) {
                 flash_message = who + " was kicked from " + channel + " by " + by + ": " + reason;
                 io.emit('notifications', flash_message);
             });
+            bot.addListener('topic', function (channel, topic, nick,message) {
+                console.log('%s changed the topic of %s to: %s', nick, channel, topic);
+                flash_message = nick + " changed the topic of " + channel + " to: " + topic;
+                io.emit('notifications', flash_message);
+            });
+            bot.addListener('notice', function (from,to,text,message) {
+                console.log('Got notice from %s: %s', from, message);
+                flash_message = 'GOT notice from '+ from + ": " + text ;
+                io.emit('notifications', flash_message);
+            });
             bot.addListener('error', function (message) {
                 console.error('ERROR: %s: %s', message.command, message.args.join(' '));
                 flash_message = "ERROR: " + message.command + ": " + message.args.join(' ');
