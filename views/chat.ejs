@@ -192,6 +192,11 @@
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
 
+    window.setInterval(function() {
+        var elem = document.getElementById('chatPanel');
+        elem.scrollTop = elem.scrollHeight;
+    }, 1000);
+
 
     var time;           // for current user's (send message time)
 
@@ -224,6 +229,7 @@
         /*alert("chat.ejs," +user.toString());*/
         $('#peoplePanel').append($('<li>').text(user));
         $('#channelName').text(args);
+        $('#chatPanel').empty();
     });
 
     socket.on('chat message', function (msg) {
