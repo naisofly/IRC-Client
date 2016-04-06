@@ -153,8 +153,8 @@ module.exports = function (app, passport,io,http) {
             bot.addListener('message', function (from, to, message) {
                 console.log('%s => %s: %s', from, to, message);
 
-                time = d.getHours()+ ":" +d.getMinutes();
-                io.emit('incoming_chat message', message, from,time);
+                /*time = d.getHours()+ ":" +d.getMinutes();*/
+                io.emit('incoming_chat message', message, from);
             });
 
             bot.addListener('names', function (args, userList) {
