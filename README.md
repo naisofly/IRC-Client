@@ -15,4 +15,4 @@ http://stackoverflow.com/questions/28651028/cannot-find-module-build-release-bso
 6. long polling - display chat messages -DONE
 7. QUIT upon signout - done
 8. User initials & timestamp - DONE
-9. Fix send bar css, login button mobile css
+9. Fix send bar css, create channel bar css, login button mobile css, 

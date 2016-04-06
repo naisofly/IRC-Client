@@ -145,8 +145,8 @@
                 </div>
 
                 <div id="contentContainer" style="display: none;height: 400px;">
-                    <div class="topicPeople" >
-                        <ul id = "peoplePanel">
+                    <div class="topicPeople">
+                        <ul id="peoplePanel">
 
                         </ul>
                     </div>
@@ -192,15 +192,15 @@
 
 
     var time;           // for current user's (send message time)
-    $("#createChannelInput").keydown(function(e){
 
-        if(e.keyCode == 13){
-
-            $.get("/joinch?ch="+encodeURIComponent(document.getElementById('createChannelInput').value), $(this).serialize(), function (data) {
+    $("#createChannelInput").keydown(function (e) {
+        //to join channel or create new one
+        if (e.keyCode == 13) { //enter pressed
+            $.get("/joinch?ch=" + encodeURIComponent(document.getElementById('createChannelInput').value), $(this).serialize(), function (data) {
             });
         }
-
     });
+
     var socket = io();
     $('form').submit(function () {/*
      alert($('#msg-input').val());*/
@@ -212,9 +212,10 @@
 
         return false;
     });
-    socket.on('notifications', function(f_message){
+
+    socket.on('notifications', function (f_message) {
         /*$('#notificationBar').append($('<div class="alert alert-danger">').text(f_message));*/
-        $("div.alert-danger").html("<p>" +f_message+ "</p>");
+        $("div.alert-danger").html("<p>" + f_message + "</p>");
     });
 
     socket.on('list_users', function (user) {
@@ -223,45 +224,51 @@
     });
 
     socket.on('chat message', function (msg) {
-        var d = new Date();
+        if (msg.length > 0) {
+            var d = new Date();
 
-        time = d.getHours()+ ":" +d.getMinutes();
+            time = d.getHours() + ":" + d.getMinutes();
 
-        /*alert(msg);*/
-        $('#chatPanel').append($('<li class="right clearfix">').append(
-                $('<span class="chat-img pull-right"> <img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar" class="img-circle"/> </span>')
-        ).append(
-                $('<div class="chat-body clearfix">').append(
-                        $('<div class="header">').append(
-                                '<small class=" text-muted"> <span class="glyphicon glyphicon-time"></span>'+time +' </small>').append(
-                                $('<strong class="pull-right primary-font">').text("<%= user.local.nickname %>"))).append(
-                        $('</strong>' +
-                                '</div>' +
-                                '<p>').text(msg).append(
-                                $('</p> </div> </li>')
-                        ))));
+            /*alert(msg);*/
+            $('#chatPanel').append($('<li class="right clearfix">').append(
+                    $('<span class="chat-img pull-right"> <img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar" class="img-circle"/> </span>')
+            ).append(
+                    $('<div class="chat-body clearfix">').append(
+                            $('<div class="header">').append(
+                                    '<small class=" text-muted"> <span class="glyphicon glyphicon-time"></span>' + time + ' </small>').append(
+                                    $('<strong class="pull-right primary-font">').text("<%= user.local.nickname %>"))).append(
+                            $('</strong>' +
+                                    '</div>' +
+                                    '<p>').text(msg).append(
+                                    $('</p> </div> </li>')
+                            ))));
+        }
     });
 
-    socket.on('incoming_chat message', function (msg,from) {
+    socket.on('incoming_chat message', function (msg, from) {
         var d = new Date();
-        time = d.getHours()+ ":" + d.getMinutes();
+        time = d.getHours() + ":" + d.getMinutes();
         /* alert(msg);*/
         /*$('#chatPanel').append($('<li class="left clearfix">').text(msg));*/
         $('#chatPanel').append($('<li class="left clearfix">').append(
-                $('<span class="chat-img pull-left"> <img src="http://placehold.it/50/55C1E7/fff&amp;text=YOU" alt="User Avatar" class="img-circle otherUserAvatar"/> </span>')
-        ).append(
+                $('<span class="chat-img pull-left">').append($('<img/>', {
+                            src: 'http://placehold.it/50/55C1E7/fff&amp;text=' + from.toUpperCase().charAt(0),
+                            alt: 'User Avatar',
+                            'class': 'img-circle'
+                        })
+                )).append(
                 $('<div class="chat-body clearfix">').append(
                         $('<div class="header">').append(
                                 $('<strong class="primary-font">').text(from)).append(
                                 $('</strong>' +
-                                        '<small class="pull-right text-muted"> <span class="glyphicon glyphicon-time"> </span>'+time +' </small> ' +
+                                        '<small class="pull-right text-muted"> <span class="glyphicon glyphicon-time"> </span>' + time + ' </small> ' +
                                         '</div>')).append(
                                 $('<p>').text(msg)).append(
                                 $('</p> </div> </li>')
                         )
                 )
         ));
-        $('img.otherUserAvatar').attr("src","http://placehold.it/50/55C1E7/fff&amp;text="+from.toUpperCase().charAt(0));
+        /*$('img.otherUserAvatar').attr("src", "http://placehold.it/50/55C1E7/fff&amp;text=" + from.toUpperCase().charAt(0));*/
     });
 </script>
 </body>
