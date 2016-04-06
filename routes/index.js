@@ -25,10 +25,6 @@ module.exports = function (app, passport,io,http) {
         console.log('listening on *:3001');
     });
 
-
-
-
-
     app.get('/', function (req, res) {
         res.render('index', {title: 'Express'});
     });
