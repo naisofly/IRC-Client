@@ -105,7 +105,7 @@
 
                 </form>
                 <!--LIST OF  CHANNELS-->
-                <div style="height: 420px; overflow-y:scroll; overflow-x: hidden;">
+                <div style="height: 400px; overflow-y:scroll; overflow-x: hidden;">
 
                     <% channellist.forEach(function(item) { %>
                     <div class="list-group-item">
@@ -161,14 +161,14 @@
                 </div>
                 <div class="panel-footer" id="panel-footer">
                     <div class="input-group">
-                        <form id="submit" action="chat" class="form-horizontal" method="post">
+                        <form id="submit" action="chat" class="form-horizontal" method="post" style="display:flex; width:225%; margin: auto;">
                             <input name="msg" id="msg-input" type="text" class="form-control input-sm"/>
-                        <span class="input-group-btn">
+                            <span class="input-group-btn">
                             <button type="submit" value="submit" name="sendbutton" class="btn btn-warning btn-sm"
                                     id="btn-chat">
                                 Send
                             </button>
-                        </span>
+                            </span>
                         </form>
                     </div>
                 </div>
@@ -191,11 +191,6 @@
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
-
-    window.setInterval(function() {
-        var elem = document.getElementById('chatPanel');
-        elem.scrollTop = elem.scrollHeight;
-    }, 1000);
 
 
     var time;           // for current user's (send message time)
@@ -277,6 +272,8 @@
                         )
                 )
         ));
+        /* var element = document.getElementById('chatPanel');
+         element.scrollTop = element.scrollHeight - element.clientHeight;*/
         /*$('img.otherUserAvatar').attr("src", "http://placehold.it/50/55C1E7/fff&amp;text=" + from.toUpperCase().charAt(0));*/
     });
 </script>

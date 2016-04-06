@@ -120,7 +120,7 @@ module.exports = function (app, passport,io,http) {
                 console.log( message.nick);
                 /*flash_message = message.nick + " " + message.user + " " + message.nick + " "*/;
                 flash_message = JSON.stringify(message,null,'\n');
-                io.emit('incoming_chat message', flash_message);
+                io.emit('incoming_chat message', flash_message, message.nick);
             });
 
             bot.addListener('part', function (channel, who, reason) {
@@ -194,6 +194,13 @@ module.exports = function (app, passport,io,http) {
             //TODO: no such channel OR you're not in the channel
         }
 
+
+        else if (msgContent.toString().toLowerCase().indexOf("/msg") >= 0) {
+            var targetNick = msgContent.split(/\s+/).slice(1, 2).toString();
+            var noticeMsg = msgContent.split(/\s+/).slice(2).join(" ");
+            bot.notice(targetNick, noticeMsg);
+
+        }
 
         else if (msgContent.toString().toLowerCase().indexOf("/notice") >= 0) {
             var targetNick = msgContent.split(/\s+/).slice(1, 2).toString();
