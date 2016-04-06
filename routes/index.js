@@ -87,7 +87,7 @@ module.exports = function (app, passport,io,http) {
         var users = [];
         channels = channeldata;
         /*if (typeof(req.body.chann) !== 'undefined'){*/
-        console.log(req.body.channeel);
+        console.log(req.user.local.nickname);
         /*channeldata.forEach(function(item) {
          channels = channels.concat(item);
 
@@ -101,6 +101,8 @@ module.exports = function (app, passport,io,http) {
                 channels: [/*'#test', */]
 
             });
+
+
             count++;
 
             bot.addListener('pm', function (nick, message) {
@@ -226,11 +228,15 @@ module.exports = function (app, passport,io,http) {
     });
 
     app.get('/logout', function (req, res) {
-        bot.opt.channels.forEach(function (currentChannel) {
+       /* bot.opt.channels.forEach(function (currentChannel) {
 
             console.log("Parting current channel: ", currentChannel);
             bot.part(currentChannel);
         });
+
+*/
+        bot.disconnect();
+        count--;
         req.logout();
         res.redirect('/');
     });
