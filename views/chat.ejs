@@ -97,25 +97,25 @@
 
     <div class="row">
         <div class="col-lg-4">
-            <div class="list-group" style="height: 520px; overflow-y:scroll; overflow-x: hidden;">
+            <div class="list-group">
 
                 <form class="list-group-item active" action="#">
 
                     <input id="createChannelInput" type="text" class=" list-group-item form-control "/>
 
                 </form>
-                <% channellist.forEach(function(item) { %>
-                <div class="list-group-item">
-                    <!--<a href="chat" class="btn btn-link"><span class="badge"><%= item.users %></span><%= item.name %></a>-->
-                    <span class="badge"><%= item.users %></span>
-                    <a href="/joinch?ch=<%= encodeURIComponent(item.name) %>"> <%= item.name %> </a>
+                <!--LIST OF  CHANNELS-->
+                <div style="height: 420px; overflow-y:scroll; overflow-x: hidden;">
+
+                    <% channellist.forEach(function(item) { %>
+                    <div class="list-group-item">
+                        <!--<a href="chat" class="btn btn-link"><span class="badge"><%= item.users %></span><%= item.name %></a>-->
+                        <span class="badge"><%= item.users %></span>
+                        <a href="/joinch?ch=<%= encodeURIComponent(item.name) %>"> <%= item.name %> </a>
+                    </div>
+
+                    <% }); %>
                 </div>
-
-                <% }); %>
-                <!--<div class="list-group-item">
-                    <span class="badge">14</span>Channel #3
-
-                </div>-->
 
                 <a class="list-group-item active"><span class="badge">14</span>Help</a>
             </div>
@@ -125,7 +125,7 @@
                 <div class="panel-heading">
                     <a href="#" class="chat" onclick="showChat()" style=" color:whitesmoke">Chat</a> |
                     <a href="#" class="People" onclick="showPeople()" style="color:whitesmoke">People</a>
-                    <a id = "channelName" class="pull-right"  style="color:whitesmoke"></a>
+                    <a id="channelName" class="pull-right" style="color:whitesmoke"></a>
                     <!--<div class="btn-group pull-right">
                         <button type="button" class="btn btn-default btn-xs dropdown-toggle">
                             <span class="glyphicon glyphicon-chevron-down"></span>
