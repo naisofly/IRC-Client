@@ -125,7 +125,7 @@
                 <div class="panel-heading">
                     <a href="#" class="chat" onclick="showChat()" style=" color:whitesmoke">Chat</a> |
                     <a href="#" class="People" onclick="showPeople()" style="color:whitesmoke">People</a>
-
+                    <a id = "channelName" class="pull-right"  style="color:whitesmoke"></a>
                     <!--<div class="btn-group pull-right">
                         <button type="button" class="btn btn-default btn-xs dropdown-toggle">
                             <span class="glyphicon glyphicon-chevron-down"></span>
@@ -215,14 +215,15 @@
         return false;
     });
 
-    socket.on('notifications', function (f_message) {
+    socket.on('notifications', function (f_message, channel) {
         /*$('#notificationBar').append($('<div class="alert alert-danger">').text(f_message));*/
         $("div.alert-danger").html("<p>" + f_message + "</p>");
     });
 
-    socket.on('list_users', function (user) {
+    socket.on('list_users', function (user, args) {
         /*alert("chat.ejs," +user.toString());*/
         $('#peoplePanel').append($('<li>').text(user));
+        $('#channelName').text(args);
     });
 
     socket.on('chat message', function (msg) {

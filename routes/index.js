@@ -157,10 +157,11 @@ module.exports = function (app, passport,io,http) {
                 console.log("UserList Channel -------------> " + args);
                 Object.keys(userList).forEach(function (item) {
 
-                    io.emit('list_users', item);
+                    io.emit('list_users', item, args);
                     console.log("UserList------------------->"+item);
 
                 });
+
 
             });
         }
