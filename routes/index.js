@@ -12,8 +12,8 @@ var ch = "";
 var flash_message = "";
 var temp;
 
-
-
+var d = new Date();
+var time;
 module.exports = function (app, passport,io,http) {
 
     io.on('connection', function (socket) {
@@ -152,7 +152,9 @@ module.exports = function (app, passport,io,http) {
             });
             bot.addListener('message', function (from, to, message) {
                 console.log('%s => %s: %s', from, to, message);
-                io.emit('incoming_chat message', message, from);
+
+                time = d.getHours()+ ":" +d.getMinutes();
+                io.emit('incoming_chat message', message, from,time);
             });
 
             bot.addListener('names', function (args, userList) {

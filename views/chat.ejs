@@ -189,6 +189,9 @@
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
+
+    var d = new Date();
+    var time;           // for current user's (send message time)
     $("#createChannelInput").keydown(function(e){
 
         if(e.keyCode == 13){
@@ -220,13 +223,14 @@
     });
 
     socket.on('chat message', function (msg) {
+        time = d.getHours()+ ":" +d.getMinutes();
         /*alert(msg);*/
         $('#chatPanel').append($('<li class="right clearfix">').append(
                 $('<span class="chat-img pull-right"> <img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar" class="img-circle"/> </span>')
         ).append(
                 $('<div class="chat-body clearfix">').append(
                         $('<div class="header">').append(
-                                '<small class=" text-muted"> <span class="glyphicon glyphicon-time"></span> 15 mins ago </small>').append(
+                                '<small class=" text-muted"> <span class="glyphicon glyphicon-time"></span>'+time +' </small>').append(
                                 $('<strong class="pull-right primary-font">').text("<%= user.local.nickname %>"))).append(
                         $('</strong>' +
                                 '</div>' +
@@ -235,7 +239,7 @@
                         ))));
     });
 
-    socket.on('incoming_chat message', function (msg,from) {
+    socket.on('incoming_chat message', function (msg,from,time) {
         /* alert(msg);*/
         /*$('#chatPanel').append($('<li class="left clearfix">').text(msg));*/
         $('#chatPanel').append($('<li class="left clearfix">').append(
@@ -245,7 +249,7 @@
                         $('<div class="header">').append(
                                 $('<strong class="primary-font">').text(from)).append(
                                 $('</strong>' +
-                                        '<small class="pull-right text-muted"> <span class="glyphicon glyphicon-time"> </span> 15 mins ago </small> ' +
+                                        '<small class="pull-right text-muted"> <span class="glyphicon glyphicon-time"> </span>'+time +' </small> ' +
                                         '</div>')).append(
                                 $('<p>').text(msg)).append(
                                 $('</p> </div> </li>')
